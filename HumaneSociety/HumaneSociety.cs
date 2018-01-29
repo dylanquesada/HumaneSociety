@@ -11,6 +11,10 @@ namespace HumaneSociety
         // Member variables
 
         // Constructor
+        public HumaneSociety()
+        {
+
+        }
 
         // Member methods
 
