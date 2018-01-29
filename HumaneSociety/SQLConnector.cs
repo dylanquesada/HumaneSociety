@@ -20,6 +20,14 @@ namespace HumaneSociety
             con = new SqlConnection(ConnectionString);
         }
         // Member methods
-
+        public void OpenConnection()
+        {
+            con.Open();
+        }
+        
+        public void CloseConnection()
+        {
+            con.Close();
+        }
     }
 }
