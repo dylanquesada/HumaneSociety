@@ -29,5 +29,11 @@ namespace HumaneSociety
         {
             con.Close();
         }
+
+        public void ExecuteQuery(string Query)
+        {
+            SqlCommand cmd = new SqlCommand(Query, con);
+            cmd.ExecuteNonQuery();
+        }
     }
 }
