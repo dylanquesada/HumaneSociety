@@ -17,6 +17,7 @@ namespace HumaneSociety
         public SQLConnector()
         {
             ConnectionString = "Server = DESKTOP-02SQATS; Database = HumaneSociety; Integrated Security = true;";
+            // This connection string will only work for dylan's computer.
             con = new SqlConnection(ConnectionString);
         }
         // Member methods
