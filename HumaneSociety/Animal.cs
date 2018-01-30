@@ -102,5 +102,12 @@
             input = UI.GetInput(text);
             animal.FoodType = input;
         }
+        public void SetFoodAmount(Animal animal)
+        {
+            string input;
+            Console.WriteLine("How many cups of food does the animal eat per day?");
+            input = UI.GetInput(integer);
+            animal.FoodAmount = input;
+        }
     }
 }
