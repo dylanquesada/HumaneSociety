@@ -109,5 +109,12 @@
             input = UI.GetInput(integer);
             animal.FoodAmount = input;
         }
+        public void SetAdoptionStatus(Animal animal)
+        {
+            string input;
+            Console.WriteLine("Is the animal adopted or not-adopted?");
+            input = UI.GetInput(text);
+            animal.AdoptionStatus = input;
+        }
     }
 }
