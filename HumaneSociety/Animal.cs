@@ -74,5 +74,12 @@
             input = UI.GetInput(date);
             animal.BirthDate = input;
         }
+        public void SetSize(Animal animal)
+        {
+            string input;
+            Console.WriteLine("What is the animal's size.");
+            input = UI.GetInput(text);
+            animal.Size = input;
+        }
     }
 }
