@@ -95,5 +95,12 @@
             input = UI.GetInput(text);
             animal.VaccineStatus = input;
         }
+        public void SetFoodType(Animal animal)
+        {
+            string input;
+            Console.WriteLine("What kind of food does the animal eat?");
+            input = UI.GetInput(text);
+            animal.FoodType = input;
+        }
     }
 }
