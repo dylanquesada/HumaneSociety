@@ -70,23 +70,30 @@
         public void SetBirthDate(Animal animal)
         {
             string input;
-            Console.WriteLine("What is the animal's birthday");
+            Console.WriteLine("When is the animal's birthday?");
             input = UI.GetInput(date);
             animal.BirthDate = input;
         }
         public void SetSize(Animal animal)
         {
             string input;
-            Console.WriteLine("What is the animal's size.");
+            Console.WriteLine("What is the animal's size?");
             input = UI.GetInput(text);
             animal.Size = input;
         }
         public void SetGender(Animal animal)
         {
             string input;
-            Console.WriteLine("What is the animal's name.");
+            Console.WriteLine("What is the animal's preferred gender?");
             input = UI.GetInput(text);
             animal.Gender = input;
+        }
+        public void SetVaccineStatus(Animal animal)
+        {
+            string input;
+            Console.WriteLine("Has the animal been vaccinated?");
+            input = UI.GetInput(text);
+            animal.VaccineStatus = input;
         }
     }
 }
