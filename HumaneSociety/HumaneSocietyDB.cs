@@ -5,14 +5,15 @@ namespace HumaneSociety
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class Model1 : DbContext
+    public partial class HumaneSocietyDB : DbContext
     {
-        public Model1()
-            : base("name=HumaneSocietyDB")
+        public HumaneSocietyDB()
+            : base("name=HumaneSocietyDB1")
         {
         }
 
         public virtual DbSet<Animal> Animals { get; set; }
+        public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -49,6 +50,22 @@ namespace HumaneSociety
                 .HasMany(e => e.Rooms)
                 .WithOptional(e => e.Animal)
                 .HasForeignKey(e => e.AnimalID);
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.FirstName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.LastName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.GoodWithPets)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.Gender)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Room>()
                 .Property(e => e.Vacancy)
