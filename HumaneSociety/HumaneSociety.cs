@@ -39,7 +39,7 @@ namespace HumaneSociety
                         done = true;
                         break;
                     default:
-                        Console.WriteLine("Sorry, {0} is not a valid entry. Try Again.", option);
+                        Console.WriteLine("Sorry, '{0}' is not a valid entry. Try Again.", option);
                         break;
                 }
             }
@@ -47,7 +47,9 @@ namespace HumaneSociety
         public Animal AddAnimal()
         {
             Animal animal = new Animal();
-
+            animal.SetName(animal);
+            animal.SetType(animal);
+            animal.SetBirthDate(animal);
             return animal;
         }
     }

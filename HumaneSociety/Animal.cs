@@ -57,70 +57,70 @@
         {
             string input;
             Console.WriteLine("What is the animal's name.");
-            input = UI.GetInput(text);
+            input = UI.GetStringInput();
             animal.PetName = input;
         }
         public void SetType(Animal animal)
         {
             string input;
             Console.WriteLine("What is the animal? (dog, cat, etc.?)");
-            input = UI.GetInput(text);
+            input = UI.GetStringInput();
             animal.AnimalType = input;
         }
         public void SetBirthDate(Animal animal)
         {
-            string input;
+            DateTime input;
             Console.WriteLine("When is the animal's birthday?");
-            input = UI.GetInput(date);
+            input = UI.GetDateInput();
             animal.BirthDate = input;
         }
         public void SetSize(Animal animal)
         {
             string input;
             Console.WriteLine("What is the animal's size?");
-            input = UI.GetInput(text);
+            input = UI.GetStringInput();
             animal.Size = input;
         }
         public void SetGender(Animal animal)
         {
             string input;
             Console.WriteLine("What is the animal's preferred gender?");
-            input = UI.GetInput(text);
+            input = UI.GetStringInput();
             animal.Gender = input;
         }
         public void SetVaccineStatus(Animal animal)
         {
             string input;
             Console.WriteLine("Has the animal been vaccinated?");
-            input = UI.GetInput(text);
+            input = UI.GetStringInput();
             animal.VaccineStatus = input;
         }
         public void SetFoodType(Animal animal)
         {
             string input;
             Console.WriteLine("What kind of food does the animal eat?");
-            input = UI.GetInput(text);
+            input = UI.GetStringInput();
             animal.FoodType = input;
         }
         public void SetFoodAmount(Animal animal)
         {
-            string input;
+            int input;
             Console.WriteLine("How many cups of food does the animal eat per day?");
-            input = UI.GetInput(integer);
+            input = UI.GetIntInput();
             animal.FoodAmount = input;
         }
         public void SetAdoptionStatus(Animal animal)
         {
             string input;
             Console.WriteLine("Is the animal adopted or not-adopted?");
-            input = UI.GetInput(text);
+            input = UI.GetStringInput();
             animal.AdoptionStatus = input;
         }
         public void SetRoom(Animal animal)
         {
-            string input;
+            int input;
             Console.WriteLine("What room is the animal in?");
-            input = UI.GetInput(integer);
+            input = UI.GetIntInput(); 
             animal.RoomID = input;
         }
     }

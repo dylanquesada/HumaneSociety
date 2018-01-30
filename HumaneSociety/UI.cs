@@ -23,5 +23,14 @@ namespace HumaneSociety
             value = Console.ReadLine().ToString();
             return value;
         }
+        public static DateTime GetDateInput()
+        {
+            DateTime dateTime;
+            while (!DateTime.TryParse(Console.ReadLine(), out dateTime))
+            {
+                Console.WriteLine("Please enter a Date. ex: (mm/dd/yyyy)");
+            }            
+            return dateTime;
+        }
     }
 }
