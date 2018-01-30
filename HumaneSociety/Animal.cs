@@ -116,5 +116,12 @@
             input = UI.GetInput(text);
             animal.AdoptionStatus = input;
         }
+        public void SetRoom(Animal animal)
+        {
+            string input;
+            Console.WriteLine("What room is the animal in?");
+            input = UI.GetInput(integer);
+            animal.RoomID = input;
+        }
     }
 }
