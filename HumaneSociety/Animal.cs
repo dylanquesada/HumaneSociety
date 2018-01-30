@@ -1,4 +1,4 @@
-namespace HumaneSociety
+﻿namespace HumaneSociety
 {
     using System;
     using System.Collections.Generic;
@@ -52,5 +52,13 @@ namespace HumaneSociety
         public virtual ICollection<Room> Rooms { get; set; }
 
         public virtual Room Room { get; set; }
+        // Member methods
+        public void SetName(Animal animal)
+        {
+            string input;
+            Console.WriteLine("What is the animal's name.");
+            input = UI.GetInput(text);
+            animal.PetName = input;
+        }
     }
 }
