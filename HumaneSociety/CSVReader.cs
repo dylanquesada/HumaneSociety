@@ -23,6 +23,7 @@ namespace HumaneSociety
                     foreach (string field in fields)
                     {
                         //TODO: Process field
+                        //Lambda here?
                     }
                 }
             }

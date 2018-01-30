@@ -1,18 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace HumaneSociety
 {
-    class Animal
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("HumaneSociety.Animals")]
+    public partial class Animal
     {
-        // Member variables
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Animal()
+        {
+            Rooms = new HashSet<Room>();
+        }
 
-        // Constructor
+        public int ID { get; set; }
 
-        // Member methods
+        [Required]
+        [StringLength(50)]
+        public string PetName { get; set; }
 
+        [StringLength(50)]
+        public string AnimalType { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime? BirthDate { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string Size { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string Gender { get; set; }
+
+        [StringLength(25)]
+        public string VaccineStatus { get; set; }
+
+        [StringLength(50)]
+        public string FoodType { get; set; }
+
+        public int? FoodAmount { get; set; }
+
+        [StringLength(12)]
+        public string AdoptionStatus { get; set; }
+
+        public int? RoomID { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Room> Rooms { get; set; }
+
+        public virtual Room Room { get; set; }
     }
 }
