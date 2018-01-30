@@ -10,6 +10,8 @@ namespace HumaneSociety
     {
         static void Main(string[] args)
         {
+            HumaneSociety hs = new HumaneSociety();
+            hs.RunHumaneSociety();
         }
     }
 }

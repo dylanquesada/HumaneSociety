@@ -13,12 +13,13 @@ namespace HumaneSociety
         // Constructor
         public HumaneSociety()
         {
-
+            
         }
 
         // Member methods
         public void RunHumaneSociety()
         {
+            HumaneSocietyDB db = new HumaneSocietyDB();
             string option;
             bool done = false;
             while (!done)
@@ -38,6 +39,11 @@ namespace HumaneSociety
                     case "done":
                         done = true;
                         break;
+                    case "add":
+                        db.Animals.Add(AddAnimal());
+                        db.SaveChanges();
+
+                        break;
                     default:
                         Console.WriteLine("Sorry, '{0}' is not a valid entry. Try Again.", option);
                         break;
@@ -56,7 +62,7 @@ namespace HumaneSociety
             animal.SetFoodType(animal);
             animal.SetFoodAmount(animal);
             animal.SetAdoptionStatus(animal);
-            animal.SetRoom(animal);
+           // animal.SetRoom(animal);
             return animal;
         }
     }
