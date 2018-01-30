@@ -50,6 +50,13 @@ namespace HumaneSociety
             animal.SetName(animal);
             animal.SetType(animal);
             animal.SetBirthDate(animal);
+            animal.SetSize(animal);
+            animal.SetGender(animal);
+            animal.SetVaccineStatus(animal);
+            animal.SetFoodType(animal);
+            animal.SetFoodAmount(animal);
+            animal.SetAdoptionStatus(animal);
+            animal.SetRoom(animal);
             return animal;
         }
     }
