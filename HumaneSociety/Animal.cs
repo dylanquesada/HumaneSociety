@@ -81,5 +81,12 @@
             input = UI.GetInput(text);
             animal.Size = input;
         }
+        public void SetGender(Animal animal)
+        {
+            string input;
+            Console.WriteLine("What is the animal's name.");
+            input = UI.GetInput(text);
+            animal.Gender = input;
+        }
     }
 }
