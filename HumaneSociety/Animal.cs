@@ -60,5 +60,13 @@
             input = UI.GetInput(text);
             animal.PetName = input;
         }
+        public void SetType(Animal animal)
+        {
+            string input;
+            Console.WriteLine("What is the animal? (dog, cat, etc.?)");
+            input = UI.GetInput(text);
+            animal.AnimalType = input;
+        }
+
     }
 }
