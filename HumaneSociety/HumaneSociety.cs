@@ -80,7 +80,7 @@ namespace HumaneSociety
             bool done = false;
             while (!done)
             {
-                Console.WriteLine("What would you like to do? 'Find' an animal, 'add' an animal to the database,s et an animal for 'adoption', collect a 'payment',  'vaccinate' an animal, 'done' to exit.");
+                Console.WriteLine("What would you like to do? 'Find' an animal, 'add' an animal to the database,s et an animal for 'adoption', collect a 'payment',  'vaccinate' an animal, import animals from 'CSV' file, or 'done' to exit.");
                 option = Console.ReadLine().ToLower();
                 switch (option)
                 {
@@ -102,6 +102,10 @@ namespace HumaneSociety
                     case "add":
                         db.Animals.Add(AddAnimal());
                         db.SaveChanges();
+                        break;
+                    case "csv":
+                        CSVReader cs = new CSVReader();
+                        cs.CSVMenu(db);
                         break;
                     default:
                         Console.WriteLine("Sorry, '{0}' is not a valid entry. Try Again.", option);

@@ -1,0 +1,22 @@
+Dog,Ralph,Small,Male,3/31/2015,1,DogFood,4,yes,Adopted
+Dog,Daisy,Small,Female,9/14/2016,2,DogFood,4,yes,NotAdopted
+Dog,Rocky,Medium,Male,12/15/2015,3,DogFood,5,yes,NotAdopted
+Dog,Arnold,Medium,Male,10/15/2017,4,DogFood,5,yes,NotAdopted
+Dog,Lassie,Large,Female,6/3/2014,5,DogFood,6,yes,NotAdopted
+Dog,Sadie,Large,Female,6/24/2013,6,DogFood,6,yes,NotAdopted
+Cat,Bailey,Small,Female,8/19/2015,7,CatFood,1,yes,Adopted
+Cat,Sierra,Small,Female,10/27/2016,8,CatFood,1,yes,Adopted
+Cat,Tom,Medium,Male,2/14/2014,9,CatFood,2,yes,NotAdopted
+Cat,Shade,Medium,Female,1/10/2016,10,CatFood,2,yes,NotAdopted
+Bird,Mary,Small,Female,5/19/1992,11,BirdFood,1,yes,NotAdopted
+Bird,Peter,Small,Male,7/29/2010,12,BirdFood,1,yes,NotAdopted
+Bird,Paul,Small,Male,4/2/2011,13,BirdFood,1,yes,Adopted
+Hamster,Lazy,Small,Male,5/17/2016,14,HampsterFood,2,no,Adopted
+Hamster,Hyper,Small,Male,9/10/2016,15,HampsterFood,2,no,NotAdopted
+Rabbit,Jessica,Small,Female,7/4/2014,16,RabbitFood,2,no,Adopted
+Rabbit,Roger,Small,Male,2/19/2015,17,RabbitFood,2,no,NotAdopted
+Snake,Slimey,Small,Male,6/24/2013,18,SnakeFood,3,no,NotAdopted
+Snake,Venom,Medium,Male,11/24/2017,19,SnakeFood,3,no,NotAdopted
+Ferret,Hillary,Small,Female,4/25/2013,20,FerretFood,1,no,NotAdopted
+Guinea Pig,Rosie,Small,Female,3/17/2015,21,GuineaPigFood,1,no,NotAdopted
+Guinea Pig,Jonah,Small,Male,7/4/2014,22,GuineaPigFood,1,no,NotAdopted

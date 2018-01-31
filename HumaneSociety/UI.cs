@@ -32,5 +32,15 @@ namespace HumaneSociety
             }            
             return dateTime;
         }
+        public static void DisplayAnimal(Animal animal)
+        {
+            Console.WriteLine("Animal name = {0}", animal.PetName);
+            Console.WriteLine("Animal type = {0}", animal.AnimalType);
+            Console.WriteLine("AnimalID = {0}", animal.ID);
+            Console.WriteLine("Animal size = {0}", animal.Size);
+            Console.WriteLine("Animal gender = {0}", animal.Gender);
+            Console.WriteLine("Animal vaccine shots = {0}", animal.VaccineStatus);
+            Console.WriteLine("Animal adoption status = {0}", animal.AdoptionStatus);
+        }
     }
 }
