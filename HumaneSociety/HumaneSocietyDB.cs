@@ -6,17 +6,13 @@ namespace HumaneSociety
     using System.Linq;
     using System.Collections;
 
-    public partial class HumaneSocietyDB : DbContext//: IEnumerable
+    public partial class HumaneSocietyDB : DbContext
     {
         public HumaneSocietyDB()
             : base("name=HumaneSocietyDB1")
         {
         }
 
-        //public IEnumerator GetEnumerator()
-        //{
-        //    for(int index = 0; index < this; index++)
-        //}
         public virtual DbSet<Animal> Animals { get; set; }
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }

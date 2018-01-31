@@ -39,7 +39,7 @@ namespace HumaneSociety
 
         }
         public void RunAdopterHumaneSociety()
-        {
+       { 
             HumaneSocietyDB db = new HumaneSocietyDB();
             string option;
             bool done = false;
@@ -50,6 +50,7 @@ namespace HumaneSociety
                 switch (option)
                 {
                     case "find":
+
                         break;
                     case "adopter":
                         Adopter adopter = new Adopter();
@@ -134,6 +135,70 @@ namespace HumaneSociety
 
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.AnimalType.ToLower() == input.ToLower());
+            foreach (var animal in result)
+            {
+                list.Add(animal);
+            }
+            return list;
+        }
+        public List<Animal> SearchByBirthDate(DateTime input)
+        {
+            var animals = new HumaneSocietyDB().Animals;
+
+            List<Animal> list = new List<Animal>();
+            var result = animals.Where(n => n.BirthDate == input);
+            foreach (var animal in result)
+            {
+                list.Add(animal);
+            }
+            return list;
+        }
+
+        public List<Animal> SearchBySize(string input)
+        {
+            var animals = new HumaneSocietyDB().Animals;
+
+            List<Animal> list = new List<Animal>();
+            var result = animals.Where(n => n.Size.ToLower() == input.ToLower());
+            foreach (var animal in result)
+            {
+                list.Add(animal);
+            }
+            return list;
+        }
+
+        public List<Animal> SearchByGender(string input)
+        {
+            var animals = new HumaneSocietyDB().Animals;
+
+            List<Animal> list = new List<Animal>();
+            var result = animals.Where(n => n.Gender.ToLower() == input.ToLower());
+            foreach (var animal in result)
+            {
+                list.Add(animal);
+            }
+            return list;
+        }
+
+        public List<Animal> SearchByVaccineStatus(string input)
+        {
+            var animals = new HumaneSocietyDB().Animals;
+
+            List<Animal> list = new List<Animal>();
+            var result = animals.Where(n => n.VaccineStatus.ToLower() == input.ToLower());
+            foreach (var animal in result)
+            {
+                list.Add(animal);
+            }
+            return list;
+        }
+
+        public List<Animal> SearchByAdoptionStatus(string input)
+        {
+            var animals = new HumaneSocietyDB().Animals;
+
+            List<Animal> list = new List<Animal>();
+            var result = animals.Where(n => n.AdoptionStatus.ToLower() == input.ToLower());
             foreach (var animal in result)
             {
                 list.Add(animal);
