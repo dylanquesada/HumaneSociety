@@ -31,5 +31,10 @@ namespace HumaneSociety
             Console.WriteLine("Enter your birthdate: ex. (mm/dd/yyyy)");
             return UI.GetDateInput();
         }
+        public string DetermineAdopterEligibility()
+        {
+            Console.WriteLine("Are you good with pets? yes or no? Don't be specific.");
+            return UI.GetStringInput();
+        }
     }
 }
