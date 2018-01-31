@@ -80,7 +80,7 @@ namespace HumaneSociety
             bool done = false;
             while (!done)
             {
-                Console.WriteLine("What would you like to do? 'Find' an animal, set an animal for 'adoption', collect a 'payment',  'vaccinate' an animal, ");
+                Console.WriteLine("What would you like to do? 'Find' an animal, 'add' an animal to the database,s et an animal for 'adoption', collect a 'payment',  'vaccinate' an animal, 'done' to exit.");
                 option = Console.ReadLine().ToLower();
                 switch (option)
                 {
@@ -94,7 +94,7 @@ namespace HumaneSociety
                         PayForAnimal();
                         break;
                     case "vaccinate":
-
+                        VaccinateAnimal();
                         break;
                     case "done":
                         done = true;
@@ -102,7 +102,6 @@ namespace HumaneSociety
                     case "add":
                         db.Animals.Add(AddAnimal());
                         db.SaveChanges();
-
                         break;
                     default:
                         Console.WriteLine("Sorry, '{0}' is not a valid entry. Try Again.", option);
@@ -115,7 +114,7 @@ namespace HumaneSociety
             List<Animal> animals = new HumaneSocietyDB().Animals.ToList();
             while (!(animals.Count == 1))
             {
-                Console.WriteLine("What would you like to filter by? 'Name', 'type', 'size', 'vaccination' status, 'adoption' status, or 'gender'.");
+                Console.WriteLine("What would you like to filter by? 'Name', 'room', 'type', 'size', 'vaccination' status, 'adoption' status, or 'gender'.");
                 switch (UI.GetStringInput().ToLower())
                 {
                     case "name":
@@ -142,6 +141,10 @@ namespace HumaneSociety
                         Console.WriteLine("Enter name:");
                         animals = SearchByName(UI.GetStringInput());
                         break;
+                    case "room":
+                        Console.WriteLine("Which room is the animal in?");
+                        animals = SearchByRoom(UI.GetIntInput());
+                        break;
                     default:
                         Console.WriteLine("Sorry that is an invalid input. Try Again.");
                         break;
@@ -151,14 +154,17 @@ namespace HumaneSociety
         }
         public void DisplayAnimals(List<Animal> list)
         {
+            Console.WriteLine("Search Results:");
             for (int i = 0; i < list.Count; i++)
-            {
+            {                
                 Console.WriteLine("Animal name = {0}", list[i].PetName);
                 Console.WriteLine("Animal type = {0}", list[i].AnimalType);
+                Console.WriteLine("AnimalID = {0}", list[i].ID);
                 Console.WriteLine("Animal size = {0}", list[i].Size);
                 Console.WriteLine("Animal gender = {0}", list[i].Gender);
                 Console.WriteLine("Animal vaccine shots = {0}", list[i].VaccineStatus);
                 Console.WriteLine("Animal adoption status = {0}", list[i].AdoptionStatus);
+                Console.WriteLine("_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
             }
         }
         public void ChangeAdoptionStatus()
@@ -168,6 +174,15 @@ namespace HumaneSociety
                 Animal animal = db.Animals.Single(n => n.ID == input);
                 animal.AdoptionStatus = "adopted";
                 db.SaveChanges();                   
+        }
+        public void VaccinateAnimal()
+        {
+            Console.WriteLine("What is the AnimalID of the Animal being vaccinated?");
+            int input = UI.GetIntInput();
+            Animal animal = db.Animals.Single(n => n.ID == input);
+            animal.VaccineStatus = "yes";
+            db.SaveChanges();
+            Console.WriteLine("{0} has been vaccinated.", animal.PetName);
         }
         public void PayForAnimal()
         {
@@ -190,6 +205,7 @@ namespace HumaneSociety
             animal.SetRoom(animal);
             return animal;
         }
+
         public List<Animal> SearchByName(string input)
         {
             var animals = new HumaneSocietyDB().Animals;
@@ -273,6 +289,17 @@ namespace HumaneSociety
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.AdoptionStatus.ToLower() == input.ToLower());
             foreach (var animal in result)
+            {
+                list.Add(animal);
+            }
+            return list;
+        }
+        public List<Animal> SearchByRoom(int input)
+        {
+            var animals = new HumaneSocietyDB().Animals;
+            List<Animal> list = new List<Animal>();
+            var result = animals.Where(n => n.RoomID == input);
+            foreach(var animal in result)
             {
                 list.Add(animal);
             }
