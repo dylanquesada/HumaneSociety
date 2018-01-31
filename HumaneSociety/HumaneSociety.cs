@@ -82,6 +82,7 @@ namespace HumaneSociety
                     case "find":
                         break;
                     case "adoption":
+                        ChangeAdoptionStatus(db);
                         break;
                     case "payment":
                         break;
@@ -100,6 +101,20 @@ namespace HumaneSociety
                         break;
                 }
             }
+        }
+
+        public void ChangeAdoptionStatus(HumaneSocietyDB db)
+        {
+            Console.WriteLine("What is the AnimalID of the Animal being adopted?");
+            int input = UI.GetIntInput();
+                Animal animal = db.Animals.Single(n => n.ID == input);
+                animal.AdoptionStatus = "adopted";
+                db.SaveChanges();
+           
+                //Console.WriteLine("Sorry, that is an invalid AnimalID. Try Again.");
+                //ChangeAdoptionStatus(db);
+            
+                    
         }
 
         public Animal AddAnimal()

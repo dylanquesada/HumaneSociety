@@ -11,8 +11,7 @@ namespace HumaneSociety
         static void Main(string[] args)
         {
             HumaneSociety hs = new HumaneSociety();
-            hs.RunAdopterHumaneSociety();
-            hs.SearchByName("bob");
+            hs.RunEmployeeHumaneSociety();
         }
     }
 }
