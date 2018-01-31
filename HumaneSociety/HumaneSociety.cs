@@ -8,15 +8,15 @@ namespace HumaneSociety
 {
     class HumaneSociety
     {
-        // Member variables
-
-        // Constructor
+        //Member variables
+        HumaneSocietyDB db = new HumaneSocietyDB();
+        //Constructor
         public HumaneSociety()
         {
-            
+
         }
 
-        // Member methods
+        //Member methods
         public void RunHumaneSociety()
         {
             HumaneSocietyDB db = new HumaneSocietyDB();
@@ -62,8 +62,20 @@ namespace HumaneSociety
             animal.SetFoodType(animal);
             animal.SetFoodAmount(animal);
             animal.SetAdoptionStatus(animal);
-           // animal.SetRoom(animal);
+            animal.SetRoom(animal);
             return animal;
+        }
+        public List<Animal> SearchByName(string name)
+        {
+            var animals = new HumaneSocietyDB().Animals;
+            
+            List<Animal> list = new List<Animal>();
+            var result = animals.Where(n => n.PetName == name);
+            foreach(var animal in animals)
+            {
+                list.Add(animal);
+            }
+            return list;
         }
     }
 }
