@@ -36,5 +36,11 @@ namespace HumaneSociety
             Console.WriteLine("Are you good with pets? yes or no? Don't be specific.");
             return UI.GetStringInput();
         }
+        public string getGender()
+        {
+            Console.WriteLine("How do you identify? (Gender)");
+            return UI.GetStringInput();
+        }
+
     }
 }
