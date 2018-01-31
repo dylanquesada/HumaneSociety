@@ -9,11 +9,15 @@ namespace HumaneSociety
     class HumaneSociety
     {
         //Member variables
-        HumaneSocietyDB db = new HumaneSocietyDB();
+        HumaneSocietyDB db;
+        HumaneSocietyBankBox bb;
+        int IntrinsicValueOfAnimals;
         //Constructor
         public HumaneSociety()
         {
-
+            IntrinsicValueOfAnimals = 100;
+            db = new HumaneSocietyDB();
+            bb = new HumaneSocietyBankBox();
         }
 
         //Member methods
@@ -58,6 +62,7 @@ namespace HumaneSociety
                         db.SaveChanges();
                         break;
                     case "pay":
+                        PayForAnimal();
                         break;                    
                     case "exit":
                         done = true;
@@ -85,6 +90,7 @@ namespace HumaneSociety
                         ChangeAdoptionStatus(db);
                         break;
                     case "payment":
+                        PayForAnimal();
                         break;
                     case "vaccinate":
                         break;
@@ -116,7 +122,12 @@ namespace HumaneSociety
             
                     
         }
-
+        public void PayForAnimal()
+        {
+            Console.WriteLine("Payment processing...");
+            bb.AcceptMoney(IntrinsicValueOfAnimals);
+            Console.WriteLine("Payment processed.");
+        }
         public Animal AddAnimal()
         {
             Animal animal = new Animal();
