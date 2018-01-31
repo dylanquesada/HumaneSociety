@@ -26,5 +26,10 @@ namespace HumaneSociety
             Console.WriteLine("Enter your last name: ");
             return UI.GetStringInput();
         }
+        public DateTime GetBirthDate()
+        {
+            Console.WriteLine("Enter your birthdate: ex. (mm/dd/yyyy)");
+            return UI.GetDateInput();
+        }
     }
 }
