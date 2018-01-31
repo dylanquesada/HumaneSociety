@@ -60,7 +60,9 @@
     <Compile Include="Animal.cs" />
     <Compile Include="CSVReader.cs" />
     <Compile Include="HumaneSociety.cs" />
+    <Compile Include="HumaneSocietyBankBox.cs" />
     <Compile Include="HumaneSocietyDB.cs" />
+    <Compile Include="Money.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

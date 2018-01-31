@@ -12,6 +12,7 @@ namespace HumaneSociety
         {
             HumaneSociety hs = new HumaneSociety();
             hs.RunEmployeeHumaneSociety();
+            Console.Read();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace HumaneSociety
                 switch (option)
                 {
                     case "find":
-
+                        SearchMenu();
                         break;
                     case "adopter":
                         Adopter adopter = new Adopter();
@@ -80,19 +80,21 @@ namespace HumaneSociety
             bool done = false;
             while (!done)
             {
-                Console.WriteLine("What would you like to do? 'Find' an animal, set an animal for 'adoption', collect a 'payment', 'vaccinate' an animal, ");
+                Console.WriteLine("What would you like to do? 'Find' an animal, set an animal for 'adoption', collect a 'payment',  'vaccinate' an animal, ");
                 option = Console.ReadLine().ToLower();
                 switch (option)
                 {
                     case "find":
+                        SearchMenu();
                         break;
                     case "adoption":
-                        ChangeAdoptionStatus(db);
+                        ChangeAdoptionStatus();
                         break;
                     case "payment":
                         PayForAnimal();
                         break;
                     case "vaccinate":
+
                         break;
                     case "done":
                         done = true;
@@ -108,19 +110,64 @@ namespace HumaneSociety
                 }
             }
         }
-
-        public void ChangeAdoptionStatus(HumaneSocietyDB db)
+        public void SearchMenu()
+        {
+            List<Animal> animals = new HumaneSocietyDB().Animals.ToList();
+            while (!(animals.Count == 1))
+            {
+                Console.WriteLine("What would you like to filter by? 'Name', 'type', 'size', 'vaccination' status, 'adoption' status, or 'gender'.");
+                switch (UI.GetStringInput().ToLower())
+                {
+                    case "name":
+                        Console.WriteLine("Enter name:");
+                        animals = SearchByName(UI.GetStringInput());
+                        break;
+                    case "type":
+                        Console.WriteLine("Enter animal type:");
+                        animals = SearchByType(UI.GetStringInput());
+                        break;
+                    case "size":
+                        Console.WriteLine("Enter size:");
+                        animals = SearchBySize(UI.GetStringInput());
+                        break;
+                    case "vaccination":
+                        Console.WriteLine("Is the animal you're looking for vaccinated? 'yes' or 'no'.");
+                        animals = SearchByVaccineStatus(UI.GetStringInput());
+                        break;
+                    case "gender":
+                        Console.WriteLine("Gender preferences");
+                        animals = SearchByName(UI.GetStringInput());
+                        break;
+                    case "adoption":
+                        Console.WriteLine("Enter name:");
+                        animals = SearchByName(UI.GetStringInput());
+                        break;
+                    default:
+                        Console.WriteLine("Sorry that is an invalid input. Try Again.");
+                        break;
+                }
+                DisplayAnimals(animals);
+            }
+        }
+        public void DisplayAnimals(List<Animal> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine("Animal name = {0}", list[i].PetName);
+                Console.WriteLine("Animal type = {0}", list[i].AnimalType);
+                Console.WriteLine("Animal size = {0}", list[i].Size);
+                Console.WriteLine("Animal gender = {0}", list[i].Gender);
+                Console.WriteLine("Animal vaccine shots = {0}", list[i].VaccineStatus);
+                Console.WriteLine("Animal adoption status = {0}", list[i].AdoptionStatus);
+            }
+        }
+        public void ChangeAdoptionStatus()
         {
             Console.WriteLine("What is the AnimalID of the Animal being adopted?");
             int input = UI.GetIntInput();
                 Animal animal = db.Animals.Single(n => n.ID == input);
                 animal.AdoptionStatus = "adopted";
-                db.SaveChanges();
-           
-                //Console.WriteLine("Sorry, that is an invalid AnimalID. Try Again.");
-                //ChangeAdoptionStatus(db);
-            
-                    
+                db.SaveChanges();                   
         }
         public void PayForAnimal()
         {
