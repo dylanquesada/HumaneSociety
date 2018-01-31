@@ -9,11 +9,16 @@ namespace HumaneSociety
     class Adopter
     {
         // Member variables
-        
+        public Person person;
         // Constructor
         public Adopter()
         {
-
+            person = new Person();
+            person.FirstName = GetFirstName();
+            person.LastName = GetLastName();
+            person.DateOfBirth = GetBirthDate();
+            person.GoodWithPets = DetermineAdopterEligibility();
+            person.Gender = getGender();
         }
         // member methods
         public string GetFirstName()

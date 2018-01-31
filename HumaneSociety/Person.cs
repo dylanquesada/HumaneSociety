@@ -5,6 +5,7 @@ namespace HumaneSociety
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    
 
     [Table("HumaneSociety.People")]
     public partial class Person
@@ -26,5 +27,7 @@ namespace HumaneSociety
 
         [StringLength(10)]
         public string Gender { get; set; }
+
+
     }
 }

@@ -17,7 +17,57 @@ namespace HumaneSociety
         }
 
         //Member methods
-        public void RunHumaneSociety()
+        public void SelectUser()
+        {
+            Console.WriteLine("Welcome to the Humane Society Console Application!");
+            while (true)
+            {                
+                Console.WriteLine("Enter '1' for Employee '2' for Adopter.");
+                switch (UI.GetIntInput())
+                {
+                    case 1:
+                        RunEmployeeHumaneSociety();
+                        return;
+                    case 2:
+                        RunAdopterHumaneSociety();
+                        return;
+                    default:
+                        Console.WriteLine("Please enter either '1' or '2'.");
+                        break;
+                }
+            }
+
+        }
+        public void RunAdopterHumaneSociety()
+        {
+            HumaneSocietyDB db = new HumaneSocietyDB();
+            string option;
+            bool done = false;
+            while (!done)
+            {
+                Console.WriteLine("What would you like to do? 'Find' an animal, Fill out 'Adopter' profile, 'Pay' for animal, or 'exit'");
+                option = Console.ReadLine().ToLower();
+                switch (option)
+                {
+                    case "find":
+                        break;
+                    case "adopter":
+                        Adopter adopter = new Adopter();
+                        db.People.Add(adopter.person);
+                        db.SaveChanges();
+                        break;
+                    case "pay":
+                        break;                    
+                    case "exit":
+                        done = true;
+                        break;
+                    default:
+                        Console.WriteLine("Sorry, '{0}' is not a valid entry. Try Again.", option);
+                        break;
+                }
+            }
+        }
+        public void RunEmployeeHumaneSociety()
         {
             HumaneSocietyDB db = new HumaneSocietyDB();
             string option;
@@ -50,6 +100,7 @@ namespace HumaneSociety
                 }
             }
         }
+
         public Animal AddAnimal()
         {
             Animal animal = new Animal();
