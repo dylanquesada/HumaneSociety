@@ -21,5 +21,10 @@ namespace HumaneSociety
             Console.WriteLine("Enter your first name: ");
             return UI.GetStringInput();
         }
+        public string GetLastName()
+        {
+            Console.WriteLine("Enter your last name: ");
+            return UI.GetStringInput();
+        }
     }
 }
