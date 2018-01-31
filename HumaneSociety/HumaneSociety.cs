@@ -65,13 +65,25 @@ namespace HumaneSociety
             animal.SetRoom(animal);
             return animal;
         }
-        public List<Animal> SearchByName(string name)
+        public List<Animal> SearchByName(string input)
         {
             var animals = new HumaneSocietyDB().Animals;
             
             List<Animal> list = new List<Animal>();
-            var result = animals.Where(n => n.PetName == name);
-            foreach(var animal in animals)
+            var result = animals.Where(n => n.PetName.ToLower() == input.ToLower());
+            foreach(var animal in result)
+            {
+                list.Add(animal);
+            }
+            return list;
+        }
+        public List<Animal> SearchByType(string input)
+        {
+            var animals = new HumaneSocietyDB().Animals;
+
+            List<Animal> list = new List<Animal>();
+            var result = animals.Where(n => n.AnimalType.ToLower() == input.ToLower());
+            foreach (var animal in result)
             {
                 list.Add(animal);
             }

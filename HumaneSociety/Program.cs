@@ -12,6 +12,7 @@ namespace HumaneSociety
         {
             HumaneSociety hs = new HumaneSociety();
             hs.RunHumaneSociety();
+            hs.SearchByName("bob");
         }
     }
 }
