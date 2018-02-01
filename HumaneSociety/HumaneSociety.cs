@@ -12,11 +12,9 @@ namespace HumaneSociety
         HumaneSocietyDB db;
         HumaneSocietyBankBox bb;
         int IntrinsicValueOfAnimals;
-        int NumberOfDaysInWeek;
         //Constructor
         public HumaneSociety()
-        {
-            NumberOfDaysInWeek = 7;
+        {            
             IntrinsicValueOfAnimals = 100;
             db = new HumaneSocietyDB();
             bb = new HumaneSocietyBankBox();
@@ -82,7 +80,7 @@ namespace HumaneSociety
             bool done = false;
             while (!done)
             {
-                Console.WriteLine("What would you like to do? 'Find' an animal, 'add' an animal to the database, set an animal for 'adoption', collect a 'payment',  'vaccinate' an animal, import animals from 'CSV' file, evaluate animal 'food' needs, or 'done' to exit.");
+                Console.WriteLine("What would you like to do? 'Find' an animal, 'add' an animal to the database, set an animal for 'adoption', collect a 'payment',  'vaccinate' an animal, import animals from 'CSV' file, evaluate animal 'food' needs, 'display' all animals, or 'done' to exit.");
                 option = Console.ReadLine().ToLower();
                 switch (option)
                 {
@@ -112,6 +110,9 @@ namespace HumaneSociety
                         CSVReader cs = new CSVReader();
                         cs.CSVMenu(db);
                         break;
+                    case "display":
+                        DisplayAnimals(db.Animals.ToList());
+                        break;
                     default:
                         Console.WriteLine("Sorry, '{0}' is not a valid entry. Try Again.", option);
                         break;
@@ -121,18 +122,6 @@ namespace HumaneSociety
         public void FoodMenu()
         {
             var animals = new HumaneSocietyDB().Animals;
-            //var FoodAmount = from p in db.Animals
-            //        select p.FoodAmount;
-            //var FoodType = from p in db.Animals
-            //                 select p.FoodType;
-            //var AnimalCatalog = from p in db.Animals
-            //                 select p.PetName;
-            //List < Animal > list = new List<Animal>();
-            //var result = animals.Where(n => n.PetName.ToLower() == input.ToLower());
-            //foreach (var animal in result)
-            //{
-            //    list.Add(animal);
-            //}            
             foreach (var pet in animals)
             {
                 Console.WriteLine("{0} eats {1} cups of {2} a day.", pet.PetName, pet.FoodAmount, pet.FoodType);
@@ -141,45 +130,59 @@ namespace HumaneSociety
        
         public void SearchMenu()
         {
+            bool done;
+            done = false;
             List<Animal> animals = new HumaneSocietyDB().Animals.ToList();
-            while (!(animals.Count == 1))
+            while (!(animals.Count == 1) && !done)
             {
                 Console.WriteLine("What would you like to filter by? 'Name', 'room', 'type', 'size', 'vaccination' status, 'adoption' status, or 'gender'.");
                 switch (UI.GetStringInput().ToLower())
                 {
                     case "name":
                         Console.WriteLine("Enter name:");
-                        animals = SearchByName(UI.GetStringInput());
+                        animals = SearchByName(UI.GetStringInput(), animals);
+                        DisplayAnimals(animals);
                         break;
                     case "type":
                         Console.WriteLine("Enter animal type:");
-                        animals = SearchByType(UI.GetStringInput());
+                        animals = SearchByType(UI.GetStringInput(), animals);
+                        DisplayAnimals(animals);
                         break;
                     case "size":
                         Console.WriteLine("Enter size:");
-                        animals = SearchBySize(UI.GetStringInput());
+                        animals = SearchBySize(UI.GetStringInput(), animals);
+                        DisplayAnimals(animals);
                         break;
                     case "vaccination":
                         Console.WriteLine("Is the animal you're looking for vaccinated? 'yes' or 'no'.");
-                        animals = SearchByVaccineStatus(UI.GetStringInput());
+                        animals = SearchByVaccineStatus(UI.GetStringInput(), animals);
+                        DisplayAnimals(animals);
                         break;
                     case "gender":
                         Console.WriteLine("Gender preferences");
-                        animals = SearchByName(UI.GetStringInput());
+                        animals = SearchByGender(UI.GetStringInput(), animals);
+                        DisplayAnimals(animals);
                         break;
                     case "adoption":
-                        Console.WriteLine("Enter name:");
-                        animals = SearchByName(UI.GetStringInput());
+                        Console.WriteLine("Is the animal you're searching for 'adopted' or 'not-adopted'?");
+                        animals = SearchByAdoptionStatus(UI.GetStringInput(), animals);
+                        DisplayAnimals(animals);
                         break;
                     case "room":
                         Console.WriteLine("Which room is the animal in?");
-                        animals = SearchByRoom(UI.GetIntInput());
+                        animals = SearchByRoom(UI.GetIntInput(), animals);
+                        DisplayAnimals(animals);
+                        break;
+                    case "restart":
+                        animals = new HumaneSocietyDB().Animals.ToList();
+                        break;
+                    case "exit":
+                        done = true;
                         break;
                     default:
                         Console.WriteLine("Sorry that is an invalid input. Try Again.");
                         break;
                 }
-                DisplayAnimals(animals);
             }
         }
         public void DisplayAnimals(List<Animal> list)
@@ -236,10 +239,8 @@ namespace HumaneSociety
             return animal;
         }
 
-        public List<Animal> SearchByName(string input)
+        public List<Animal> SearchByName(string input, List<Animal> animals)
         {
-            var animals = new HumaneSocietyDB().Animals;
-            
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.PetName.ToLower() == input.ToLower());
             foreach(var animal in result)
@@ -248,10 +249,8 @@ namespace HumaneSociety
             }
             return list;
         }
-        public List<Animal> SearchByType(string input)
-        {
-            var animals = new HumaneSocietyDB().Animals;
-
+        public List<Animal> SearchByType(string input, List<Animal> animals)
+        {            
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.AnimalType.ToLower() == input.ToLower());
             foreach (var animal in result)
@@ -260,10 +259,8 @@ namespace HumaneSociety
             }
             return list;
         }
-        public List<Animal> SearchByBirthDate(DateTime input)
+        public List<Animal> SearchByBirthDate(DateTime input, List<Animal> animals)
         {
-            var animals = new HumaneSocietyDB().Animals;
-
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.BirthDate == input);
             foreach (var animal in result)
@@ -273,10 +270,8 @@ namespace HumaneSociety
             return list;
         }
 
-        public List<Animal> SearchBySize(string input)
+        public List<Animal> SearchBySize(string input, List<Animal> animals)
         {
-            var animals = new HumaneSocietyDB().Animals;
-
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.Size.ToLower() == input.ToLower());
             foreach (var animal in result)
@@ -286,10 +281,8 @@ namespace HumaneSociety
             return list;
         }
 
-        public List<Animal> SearchByGender(string input)
+        public List<Animal> SearchByGender(string input, List<Animal> animals)
         {
-            var animals = new HumaneSocietyDB().Animals;
-
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.Gender.ToLower() == input.ToLower());
             foreach (var animal in result)
@@ -299,10 +292,8 @@ namespace HumaneSociety
             return list;
         }
 
-        public List<Animal> SearchByVaccineStatus(string input)
+        public List<Animal> SearchByVaccineStatus(string input, List<Animal> animals)
         {
-            var animals = new HumaneSocietyDB().Animals;
-
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.VaccineStatus.ToLower() == input.ToLower());
             foreach (var animal in result)
@@ -312,10 +303,8 @@ namespace HumaneSociety
             return list;
         }
 
-        public List<Animal> SearchByAdoptionStatus(string input)
+        public List<Animal> SearchByAdoptionStatus(string input, List<Animal> animals)
         {
-            var animals = new HumaneSocietyDB().Animals;
-
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.AdoptionStatus.ToLower() == input.ToLower());
             foreach (var animal in result)
@@ -324,9 +313,8 @@ namespace HumaneSociety
             }
             return list;
         }
-        public List<Animal> SearchByRoom(int input)
+        public List<Animal> SearchByRoom(int input, List<Animal> animals)
         {
-            var animals = new HumaneSocietyDB().Animals;
             List<Animal> list = new List<Animal>();
             var result = animals.Where(n => n.RoomID == input);
             foreach(var animal in result)
