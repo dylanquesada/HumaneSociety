@@ -164,7 +164,7 @@ namespace HumaneSociety
                         DisplayAnimals(animals);
                         break;
                     case "adoption":
-                        Console.WriteLine("Is the animal you're searching for 'adopted' or 'not-adopted'?");
+                        Console.WriteLine("Is the animal you're searching for 'adopted' or 'notadopted'?");
                         animals = SearchByAdoptionStatus(UI.GetStringInput(), animals);
                         DisplayAnimals(animals);
                         break;
