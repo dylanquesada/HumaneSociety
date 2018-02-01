@@ -12,9 +12,11 @@ namespace HumaneSociety
         HumaneSocietyDB db;
         HumaneSocietyBankBox bb;
         int IntrinsicValueOfAnimals;
+        int NumberOfDaysInWeek;
         //Constructor
         public HumaneSociety()
         {
+            NumberOfDaysInWeek = 7;
             IntrinsicValueOfAnimals = 100;
             db = new HumaneSocietyDB();
             bb = new HumaneSocietyBankBox();
@@ -80,12 +82,15 @@ namespace HumaneSociety
             bool done = false;
             while (!done)
             {
-                Console.WriteLine("What would you like to do? 'Find' an animal, 'add' an animal to the database,s et an animal for 'adoption', collect a 'payment',  'vaccinate' an animal, import animals from 'CSV' file, or 'done' to exit.");
+                Console.WriteLine("What would you like to do? 'Find' an animal, 'add' an animal to the database, set an animal for 'adoption', collect a 'payment',  'vaccinate' an animal, import animals from 'CSV' file, evaluate animal 'food' needs, or 'done' to exit.");
                 option = Console.ReadLine().ToLower();
                 switch (option)
                 {
                     case "find":
                         SearchMenu();
+                        break;
+                    case "food":
+                        FoodMenu();
                         break;
                     case "adoption":
                         ChangeAdoptionStatus();
@@ -113,6 +118,27 @@ namespace HumaneSociety
                 }
             }
         }
+        public void FoodMenu()
+        {
+            var animals = new HumaneSocietyDB().Animals;
+            //var FoodAmount = from p in db.Animals
+            //        select p.FoodAmount;
+            //var FoodType = from p in db.Animals
+            //                 select p.FoodType;
+            //var AnimalCatalog = from p in db.Animals
+            //                 select p.PetName;
+            //List < Animal > list = new List<Animal>();
+            //var result = animals.Where(n => n.PetName.ToLower() == input.ToLower());
+            //foreach (var animal in result)
+            //{
+            //    list.Add(animal);
+            //}            
+            foreach (var pet in animals)
+            {
+                Console.WriteLine("{0} eats {1} cups of {2} a day.", pet.PetName, pet.FoodAmount, pet.FoodType);
+            }
+        }
+       
         public void SearchMenu()
         {
             List<Animal> animals = new HumaneSocietyDB().Animals.ToList();
